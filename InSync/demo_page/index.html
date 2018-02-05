@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style></style>
+        <link href="assets/css/login.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="fb-root"></div>
+    <script>
+        function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+   
+    if (response.status === 'connected') {
+	window.location.href = "http://localhost:8080/dashboard.html";
+     
+    } else {
+     console.log("logout fail");
+    }
+  }
+
+      (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=177201449531129';
+  fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+ function checkLoginState() {
+  console.log("Login");
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+</script>
+
+  <!--Original content of the page -->
+
+    <div class="login-page">
+  <div class="form">
+    <form class="register-form">
+      <input type="text" placeholder="name"/>
+      <input type="password" placeholder="password"/>
+      <input type="text" placeholder="email address"/>
+      <button>create</button>
+      <p class="message">Already registered? <a href="dashboard.html">Sign In</a></p>
+    </form>
+
+    <form class="login-form" action="dashboard.html">
+      <input type="text" placeholder="username"/>
+      <input type="password" placeholder="password"/>
+      <button>login</button>
+      
+    </form>
+        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState();"></div>
+  </div>
+</div>
+
+  </body>
+</html>
